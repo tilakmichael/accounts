@@ -1,0 +1,46 @@
+<div class='container'> 
+        <h4> Select Your Organization</h4>
+        <div> </div>
+        <div> </div>
+
+       <div class="panel panel-default">
+           <div class="panel-body">
+                 <form class="form-horizontal" #userform='ngForm'>
+                    <div class="form-group">
+                         <label  class='control-label col-sm-2'>Organization</label>
+                         <div class="col-sm-3">
+                             <select [(ngModel)]="orgId" (ngModelChange)='onChange($event)' name='orgid' required>
+                                <option *ngFor="let _data of orgData" [value]='_data.id'> {{_data.name}} </option>
+                             </select>
+                         </div>
+                    </div> 
+
+                    <div class="form-group">
+                         <label  class='control-label col-sm-2'>Acccount Period</label>
+                         <div class="col-sm-3">
+                             <select [(ngModel)]="periodId" name='periodid' required>
+                                <option *ngFor="let _data of periodData" [value]='_data.id'> {{_data.startdt|date:'shortDate'}} - {{_data.enddt|date:'shortDate'}} </option>
+                             </select>
+                         </div>
+                    </div> 
+   
+                    <div class="form-group">
+                         <div class="form-group" style='float: right'>
+                             <button class='btn btn-primary' (click)="orgSelect()" [disabled]='!orgId'> Done </button>
+                         </div>
+                    </div>
+
+
+                    <!--div> 
+                       <h4> xxxxxxx </h4> 
+                       <table> 
+                           <tr *ngFor='let data of orgData'>
+                              <td> Name </td> 
+                              <td> {{data.name}} </td>
+                          </tr> 
+                       </table>    
+                    </div--> 
+                 </form>
+            </div>
+        </div>           
+</div>

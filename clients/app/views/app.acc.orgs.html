@@ -1,0 +1,93 @@
+<div class="container">
+
+    <div class="table-responsive">
+           <table class="table table-bordered table-hover"> 
+                <thead>
+                    <tr> 
+                       <!--td> Seq </td--> 
+                       <td>Name</td>
+                        <td>Phone</td>
+                        <td>email</td>
+                        <td> <button class="btn btn-primary" [class.disabled]="!addDataFlag || editFlag" (click)="addData()">  Add </button> </td>
+                     </tr>   
+                </thead>
+                <tbody> 
+                    <tr *ngFor="let data of allData ; let rowindex = index">
+                        <!--td> <input type="text" value= '{{rowindex+1}}' disabled="true"> </td--> 
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.name}} </td>
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.phone}}</td>
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.email}} </td>
+                        <td *ngIf='!editFlag || data.id !== editId'> 
+                           <button class="btn btn-warning" (click)="editData(data.id, rowindex)"  [disabled]="editFlag"> Edit </button> 
+                           <button class="btn btn-danger" (click)="deleteData(data.id, rowindex)" [disabled]="editFlag"> Delete </button> 
+                        </td>
+                        <!--  Editing    -->
+                        <td *ngIf='editFlag && data.id == editId' colspan='4'>
+                        <div >  
+                           <form class="form-horizontal" #userform='ngForm' (ngSubmit)='saveData(data.id, rowindex)'>
+                             <div class="form-group">
+                                 <label  class='control-label col-sm-1'>Name</label>
+                                 <div class="col-sm-6">
+                                 <input type='text' class='form-control' #iname="ngModel"  name='name' [(ngModel)]="name" required autofocus>
+                                 </div>
+                             </div>
+                              <div class="form-group">
+                                 <label  class='control-label col-sm-1'>Address</label>
+                                 <div class="col-sm-5">
+                                   <input type='text' class='form-control' #iaddress1 name='address1' [(ngModel)]="address1">
+                                 </div>
+                                 <div class="col-sm-5">
+                                   <input type='text' class='form-control' #iaddress2 name='address2' [(ngModel)]="address2">
+                                 </div>
+                              </div>
+                             <div class="form-group">
+                                 <label  class='control-label col-sm-1'>City</label>
+                                 <div class="col-sm-3">
+                                   <input type='text' class='form-control' #icity name='city' [(ngModel)]="city">
+                                 </div>
+                                 <label  class='control-label col-sm-1'>State</label>
+                                 <div class="col-sm-3">
+                                   <input type='text' class='form-control' #istate name='state' [(ngModel)]="state" >
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label  class='control-label col-sm-1'>Country</label>
+                                 <div class="col-sm-3">
+                                   <input type='text' class='form-control' #icountry name='country' [(ngModel)]="country">
+                                 </div>
+                                 <label  class='control-label col-sm-1'>Postal</label>
+                                 <div class="col-sm-3">
+                                   <input type='text' class='form-control' #ipostal name='postal' [(ngModel)]="postal">
+                                 </div>
+                               </div>
+                      
+                               <div class="form-group">
+                                    <label  class='control-label col-sm-1'>Phone</label>
+                                    <div class="col-sm-3">
+                                      <input type='text' class='form-control' #iphone name='phone' [(ngModel)]="phone" required>
+                                    </div>
+                                    <label  class='control-label col-sm-1'>eMail</label>
+                                    <div class="col-sm-3">
+                                      <input type='text' class='form-control' #iemail name='email' [(ngModel)]="email">
+                                    </div>
+                                    <label  class='control-label col-sm-1'>Web</label>
+                                    <div class="col-sm-3">
+                                      <input type='text' class='form-control' #iweb name='web' [(ngModel)]="web">
+                                    </div>
+                               </div>                            
+                            
+
+                             <div class="form-group" style='float: right'>
+                                  
+                                  <button type="button" class='btn btn-success' [disabled]='!userform.valid || !userform.dirty ' (click)='saveData(data.id, rowindex)'>Save</button>
+                                  <button type="button" class='btn btn-warning' (click)='cancellData(data.id, rowindex)'>Cancell</button>
+ 
+                             </div>
+                           </form>
+                        </div>
+                        </td>                        
+                    </tr>
+                </tbody>
+           </table>    
+    </div> 
+</div>

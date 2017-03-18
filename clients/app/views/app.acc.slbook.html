@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="table-responsive">
+           <table class="table table-bordered table-hover"> 
+                <thead>
+                    <tr> 
+                       <!--td> Seq </td--> 
+                       <td>Code</td>
+                        <td>Name</td>
+                        <td>General Ledger</td>
+                        <td> <button class="btn btn-primary" [disabled]="editFlag" (click)="addData()">  Add </button> </td>
+                     </tr>   
+                </thead>
+                <tbody> 
+                    <tr *ngFor="let data of slData ; let rowindex = index">
+                        <!--td> <input type="text" value= '{{rowindex+1}}' disabled="true"> </td--> 
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.code}} </td>
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.name}}</td>
+                        <td *ngIf='!editFlag || data.id !== editId'> 
+                           <select #igltyp [ngModel]='data.glid' disabled>
+                                <option *ngFor='let _gdata of allGlData'  [value]='_gdata.id'> {{_gdata.name}} </option>
+                           </select>    
+                          
+                        </td>
+                        <td *ngIf='!editFlag || data.id !== editId'> 
+                           <button class="btn btn-warning" (click)="editData(data.id, rowindex)"  [disabled]="editFlag"> Edit </button> 
+                           <button class="btn btn-danger" (click)="deleteData(data.id, rowindex)" [disabled]="editFlag"> Delete </button> 
+                        </td>
+                        <!--  Editing    -->
+                        <td *ngIf='editFlag && data.id == editId' colspan='4'>
+                        <div >  
+
+                            <form class="form-horizontal" [formGroup]='formDatas'> 
+                               <div class="form-group">
+                                    
+                                 <label  class='control-label col-sm-2' required autofocus>Code</label>
+                                 <div class="col-sm-1">
+                                     <input type='text' class='form-control' id='#icode' name='code' formControlName="code" required  minlength="3"  maxlength="3" style="text-transform:uppercase" >
+                                 </div>
+
+                                 <label  class='control-label col-sm-2'>Name </label>  
+                                 <div class="col-sm-5">
+                                    <input type='text' class='form-control' id='#iname' name='name' formControlName="name"  required>
+                                 </div>
+
+                               </div>  
+                               <div> 
+                                 <label  class='control-label col-sm-2'>Ledger</label>
+                                 <div class="col-sm-3">
+                                     <select class='form-control' id='#glid' name='glid' formControlName="glid" required >
+                                        <option *ngFor='let _gdata of allGlData'  [value]='_gdata.id' required> {{_gdata.name}} </option>                                    
+                                    </select>    
+                                 </div>
+                               </div>
+
+                               <div class="form-group" style="float:right">
+                                    <button type="button" class="btn btn-warning" (click)='saveData(data.id,rowindex)' [disabled]='!formDatas.valid || formDatas.pristine'> Save </button> 
+                                    <button type="button" class="btn btn-danger" (click)='onCancel(data.id,rowindex)'> Cancell </button>
+                               </div>    
+                            </form>
+                        </div>
+                        </td>                        
+                    </tr>
+                </tbody>
+           </table>    
+    </div> 
+</div>

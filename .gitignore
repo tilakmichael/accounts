@@ -1,0 +1,8 @@
+dist/
+node_modules/
+typings/
+app/*.js
+app/*.map
+clients/node_modules/
+clients/app/*.js
+clients/app/*.map

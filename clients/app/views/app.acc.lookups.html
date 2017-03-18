@@ -1,0 +1,87 @@
+<div class="container">
+    
+    <!--div *ngIf="!dbName">  <APP-DB> </APP-DB> </div-->
+
+    <div>
+        <div> <h4> Lookup Types  {{error}} </h4> </div>
+
+        <table class="table table-bordered table-hover">  
+
+        <thead>
+            <tr> 
+                <td>Name</td>
+                <td>  <button type="button" class="btn btn-primary" (click)="onTypeAdd()" [disabled]="typeEditFlag" > Add </button> </td>
+            </tr>
+        </thead> 
+        <tbody>
+        <tr *ngFor='let data of typeData ; let rowIndex=index' (click)="onTypeRowClick(data.id, rowIndex)"> 
+            <td *ngIf="(!typeEditFlag) || typeId!=data.id "> {{ data.name}} </td>
+            <td *ngIf="(!typeEditFlag) || typeId!=data.id"> 
+                <button type="button" class="btn btn-warning" [disabled]="typeEditFlag || data.seeded=='Y'" (click)="onTypeEdit(data.id, rowIndex)" > Edit </button> 
+                <button type="button" class="btn btn-danger" (click)="onTypeDelete(data.id, rowIndex)"  [disabled]="typeEditFlag || data.seeded=='Y'" > Delete </button>
+            </td>
+
+            <td *ngIf="typeEditFlag && typeId==data.id"> 
+                <input type="text"  autofocus required  #nameref='ngModel' name="name" [(ngModel)]="name"/>   
+            </td>
+            <td *ngIf="typeEditFlag  && typeId==data.id"> 
+                <button type="button" class="btn btn-success" [disabled]="!name"   (click)="onTypeSave(data.id,rowIndex)"  > Save </button> 
+                <button type="button" class="btn btn-warning" (click)="onTypeCancel(data.id, rowIndex)" > Cancell </button>
+                
+            </td>
+
+
+            <!--td> {{data.type}} </td>
+            <td> {{data.refid}} </td> 
+            <td> {{data.id}} </td--> 
+        </tr>
+        </tbody>
+        
+        </table>
+    </div>
+
+   <!-- --------------------  Child Name  ------------------------------------------- -->
+    <div *ngIf='typeName'>
+          <div> <p> Values of: {{typeName}}  </p>
+    </div>
+    <table class="table table-bordered table-hover">  
+
+    <thead>
+        <tr> 
+            <td> Name </td>
+            <td> Seq </td>
+            <td>  <button type="button" class="btn btn-primary" (click)="onLookAdd()"  [disabled]=" (lookEditFlag || typeEditFlag)"> Add </button> </td>
+        </tr>
+    </thead> 
+        
+    <tbody>
+    
+    <tr *ngFor='let ldata of lookData ; let rowIndex=index'> 
+        <td *ngIf="(!typeEditFlag) || lookId!=ldata.id"> {{ldata.name}} </td>
+        <td *ngIf="(!typeEditFlag) || lookId!=ldata.id"> {{ldata.seq}} </td>
+        <td *ngIf="(!typeEditFlag) || lookId!=ldata.id"> 
+            <button type="button" class="btn btn-warning" *ngIf="!typeEditFlag"  (click)="onLookEdit(rowIndex)" > Edit </button> 
+            <button type="button" class="btn btn-danger"  *ngIf="!typeEditFlag"  (click)="onLookDelete(ldata.id, rowIndex)"> Delete </button>
+        </td>
+
+
+        <td *ngIf="typeEditFlag && lookId==ldata.id"> 
+            <input type="text" required #nameref="ngModel" autofocus name="name" [(ngModel)]="name"/>   
+        </td>
+        <td *ngIf="typeEditFlag && lookId==ldata.id"> 
+             <input type="number" required #seqref="ngModel" name="seq" [(ngModel)]="seq"/>
+        </td>     
+        <td *ngIf="typeEditFlag  && lookId==ldata.id"> 
+                <button type="button" class="btn btn-success" [disabled]="!name || !seq"   (click)="onLookSave(ldata.id,rowIndex)"  > Save </button> 
+                <button type="button" class="btn btn-warning" (click)="onLookCancel(ldata.id, rowIndex)" > Cancell </button>
+                
+        </td>
+
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,37 @@
+{
+  "name": "Angular2App",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "lite": "lite-server",
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "",
+    "@angular/compiler": "",
+    "@angular/core": "",
+    "@angular/forms": "",
+    "@angular/http": "",
+    "@angular/platform-browser": "",
+    "@angular/platform-browser-dynamic": "",
+    "@angular/router": "",
+    "@angular/upgrade": "",
+    "angular2-in-memory-web-api": "",
+    "bootstrap": "",
+    "core-js": "",
+    "reflect-metadata": "",
+    "rxjs": "",
+    "systemjs": "",
+    "zone.js": ""
+  },
+  "devDependencies": {
+    "concurrently": "",
+    "lite-server": "",
+    "typescript": "",
+    "typings": ""
+  }
+}

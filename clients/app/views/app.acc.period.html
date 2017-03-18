@@ -1,0 +1,62 @@
+<div class="container">
+    <div>  <h3> Accounts Periods {{error}}</h3> </div>
+    <div class="table-responsive">
+           <table class="table table-bordered table-hover"> 
+                <thead>
+                       <!--s\td> Seq </td--> 
+                       <td>Start Date</td>
+                        <td>End Date</td>
+                        <td>Status</td>
+                        <td> <button class="btn btn-primary" [disabled]="editFlag" (click)="addData()">  Add </button> </td>
+                        
+                </thead>
+                <tbody> 
+                    <tr *ngFor="let data of periodData ; let rowindex = index">
+                        <!--td> <input type="text" value= '{{rowindex+1}}' disabled="true"> </td--> 
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.startdt | date:'shortDate'}} </td>
+                        <td *ngIf='!editFlag || data.id !== editId'> {{data.enddt | date:'shortDate'}}</td>
+                        <td *ngIf='!editFlag || data.id !== editId'> 
+                           <select class='form-control' #istatus name='status' [(ngModel)]="data.status" disabled>
+                                  <option value='O'>Open</option>
+                                  <option value='C'>Close </option>  
+                           </select> 
+                       
+                        </td>
+                        <td *ngIf='!editFlag || data.id !== editId'> 
+                           <button class="btn btn-warning" (click)="editData(data.id, rowindex)"  [disabled]="editFlag"> Edit </button> 
+                           <button class="btn btn-danger" (click)="deleteData(data.id, rowindex)" [disabled]="editFlag"> Delete </button> 
+                        </td>
+                        <!--  Editing    -->
+                        <td *ngIf='editFlag && data.id == editId' colspan='4'>
+                        <div >  
+                           <form class="form-horizontal" #userform='ngForm' >
+                             <div class="form-group">
+                                 <label  class='control-label col-sm-1'>Start Date</label>
+                                 <div class="col-sm-3">
+                                   <input type='date' class='form-control' #istartdt (change)='periodChange(istartdt.value)'   name='startdt' [(ngModel)]="startdt" required>
+                                 </div>
+                                 <label  class='control-label col-sm-1'>End Date</label>
+                                 <div class="col-sm-3">
+                                   <input type='date' class='form-control' #ienddt name='enddt' [(ngModel)]="enddt" required>
+                                 </div>
+                                 <label  class='control-label col-sm-1'>Status</label>
+                                 <div class="col-sm-2">
+                                    <select class='form-control' #istatus name='status' [(ngModel)]="status">
+                                         <option value='O'>Open</option>
+                                         <option value='C'>Close </option>  
+                                    </select> 
+                                 </div>
+                             </div>
+
+                                 <div class="form-group" style='float: right'>
+                                    <button type="button" class='btn btn-success' [disabled]='!userform.valid || !userform.dirty ' (click)='saveData(data.id, rowindex)'>Save</button>
+                                    <button type="button" class='btn btn-warning' (click)='cancellData(data.id, rowindex)'>Cancell</button>
+                                </div>
+                           </form>
+                        </div>
+                        </td>                        
+                    </tr>
+                </tbody>
+           </table>    
+    </div> 
+</div>

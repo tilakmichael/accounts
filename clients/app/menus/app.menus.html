@@ -1,0 +1,64 @@
+<div class='container'>
+    <div *ngIf='orgId'>
+      <nav class="navbar  navbar-inverse navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header" >
+               <a class="navbar-brand"  >{{orgName}} {{startDt|date:'shortDate'}} {{endDt|date:'shortDate'}}:</a>
+            </div>
+            
+            <ul class="nav navbar-nav">
+            <li class="active" ><a [routerLink]="['']">Home</a></li>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Setup
+                   <b class="caret"></b>
+               </a>
+               <ul class="dropdown-menu">
+                    <li><a [routerLink]="['orgs']">Organization</a></li>
+                    <li><a [routerLink]="['lookups']">Lookups </a></li>
+                    <li><a [routerLink]="['types']">Ledger Types </a></li>
+                    <li><a [routerLink]="['period']">Periods </a></li>
+               </ul>
+                
+            </li>
+
+            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Masters
+               <b class="caret"></b>
+               </a>
+               <ul class="dropdown-menu">
+                    <li><a [routerLink]="['gl']">General Ledgers</a></li>
+                    <li><a [routerLink]="['slbook']">Sub Ledger Definition </a></li>
+                    <li><a [routerLink]="['book']">Book Definition </a></li>
+                    <li><a [routerLink]="['sl']">Sub Ledgers </a></li>
+                 
+               </ul>
+ 
+            </li>
+
+            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Transactions
+               <b class="caret"></b>
+               </a>
+               <ul class="dropdown-menu">
+                    <li><a [routerLink]="['recsel/P']">Payments</a></li>
+                    <li><a [routerLink]="['recsel/R']">Receipts</a></li>
+
+
+                    
+               </ul>
+            </li>
+
+            <li><a [routerLink]="['orgs']">Reports</a></li>
+            </ul>
+        </div>
+
+      </nav>
+    </div>
+    <div *ngIf='!orgId'> 
+        <APP-ORG-SELECT (orgEId)='orgId=$event' (orgEName)='orgName=$event' (periodEId)='periodId=$event'
+                        (startEdt)='startDt=$event' (endEdt)='endDt=$event' 
+                        > 
+        </APP-ORG-SELECT>
+    </div>
+
+    <div> 
+    <router-outlet *ngIf='orgId'> </router-outlet>
+    </div>
+</div>
