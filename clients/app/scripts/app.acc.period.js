@@ -19,6 +19,7 @@ var AppAccPeriod = (function () {
         this.table = 'period';
         this.allData = [];
         this.periodData = [];
+        this.docData = [];
         this.error = [];
         this.editFlag = false;
         this.editId = undefined;
@@ -36,6 +37,11 @@ var AppAccPeriod = (function () {
             if (_this.allData.length > 0) {
                 _this.periodData = _this.allData.filter(function (data) { return data.orgid == _this.orgid; });
             }
+            _this._common.log(resp);
+        }, function (error) { _this.error = error; });
+        this._data.getData('doc')
+            .subscribe(function (resp) {
+            _this.docData = resp.filter(function (data) { return data.orgid == _this.orgid; });
             _this._common.log(resp);
         }, function (error) { _this.error = error; });
     };
@@ -130,8 +136,20 @@ var AppAccPeriod = (function () {
         console.log('end dt ');
         console.log(this.enddt);
     };
+    AppAccPeriod.prototype.checkDoc = function (id) {
+        var retval = false;
+        var idx = this._common.findIndex(this.docData, 'prdid==' + id);
+        if (idx >= 0) {
+            retval = true;
+        }
+        return retval;
+    };
     AppAccPeriod.prototype.deleteData = function (id, index) {
         var _this = this;
+        if (this.checkDoc(id)) {
+            alert('Document exists fpr this period');
+            return;
+        }
         if (confirm("Delete this period? ")) {
             this._data.deleteData(this.table, id).subscribe(function (resp) {
                 _this._common.log(resp);

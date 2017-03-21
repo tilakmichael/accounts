@@ -20,6 +20,7 @@ var AppAccOrgs = (function () {
         this.allData = [];
         this.error = [];
         this.prdData = [];
+        this.typData = [];
         this.addDataFlag = true;
         this.editFlag = false;
         this.editId = undefined;
@@ -39,6 +40,10 @@ var AppAccOrgs = (function () {
         this._data.getData('period')
             .subscribe(function (resp) {
             _this.prdData = resp;
+        }, function (error) { _this.error = error; });
+        this._data.getData('types')
+            .subscribe(function (resp) {
+            _this.typData = resp;
         }, function (error) { _this.error = error; });
     };
     AppAccOrgs.prototype.cancellData = function (id, index) {
@@ -135,12 +140,18 @@ var AppAccOrgs = (function () {
         if (index >= 0) {
             retval = true;
         }
+        else {
+            index = this._common.findIndex(this.typData, 'orgid==' + id);
+            if (index >= 0) {
+                retval = true;
+            }
+        }
         return retval;
     };
     AppAccOrgs.prototype.deleteData = function (id, index) {
         var _this = this;
         if (this.checkChild(id)) {
-            alert('Period Exist for this Organization. Deletion is not allowed');
+            alert('Period or Leger Type Exist for this Organization. Deletion is not allowed');
             return;
         }
         this._data.deleteData(this.table, id).subscribe(function (resp) {
@@ -150,6 +161,9 @@ var AppAccOrgs = (function () {
                 _this.addDataFlag = !(_this.allData.length >= 3);
             }
         }, function (error) { return _this.error = error; });
+    };
+    AppAccOrgs.prototype.goHome = function () {
+        this._common.goHome();
     };
     return AppAccOrgs;
 }());

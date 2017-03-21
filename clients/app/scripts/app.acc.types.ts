@@ -21,6 +21,8 @@ export class AppAccTypes{
     public fData   = [] ;
     public sData   = [] ;
     public tData   = [] ;
+    public glData   = [] ;
+
     public error   = [] ;
     
     public fEditFlag:boolean=false ; 
@@ -63,6 +65,12 @@ export class AppAccTypes{
                this.onclick(1, this.fId , 0)
             }  
         }, error => {this.error = error  }) ;
+
+
+           this._data.getData('gl' )
+            .subscribe(resp => {
+            this.glData = resp.filter(_doc => _doc.orgid==this.orgId ) ;
+            }, error => {this.error = error  }) ;
     }
 
     public onclick(level, id, index) {
@@ -141,6 +149,16 @@ private popChild(parentId,  level ){
                
  
     };
+
+
+  private checkGl(id):boolean {
+      let retval:boolean = false ; 
+      let indx = this._common.findIndex(this.glData, 'gltypeid=='+id) ; 
+      if (indx >= 0 ) {
+          retval = true ;
+      }
+      return retval ; 
+  }  
 
    private deleteAllData(id) {
         let idex= this.allData.findIndex(data => data.id == id ) ;
@@ -404,7 +422,12 @@ private popChild(parentId,  level ){
     public deleteFData( id:number, index:number){
        this.onclick(1, id, index) ;
        if (this.sData.length > 0 ) {
-          alert( 'Child Level Existi for this record: '+ this.fData[index].name) ; 
+          alert( 'Child Level Exist for this record: '+ this.fData[index].name) ; 
+          return ;
+       }
+
+       if (this.checkGl(id)) {
+          alert( 'Ledger Defined for this record: '+ this.fData[index].name) ; 
           return ;
        }
        if ( confirm(' Do you want to delete '+ this.fData[index].name+'?') ){
@@ -424,6 +447,12 @@ private popChild(parentId,  level ){
           alert( 'Child Level Exists for this record: '+ this.sData[index].name) ; 
           return ;
        }
+       if (this.checkGl(id)) {
+          alert( 'Ledger Defined for this record: '+ this.sData[index].name) ; 
+          return ;
+  
+       }
+       
        if ( confirm(' Do you want to delete '+ this.sData[index].name+'?')) {
           this.sData.splice(index,1) ; 
           this.deleteAllData(id);
@@ -436,6 +465,11 @@ private popChild(parentId,  level ){
     } ; 
 
   public deleteTData( id:number, index:number){
+      if (this.checkGl(id)) {
+          alert( 'Ledger Defined for this record: '+ this.tData[index].name) ; 
+          return ;
+      }
+ 
        if ( confirm(' Do you want to delete '+ this.tData[index].name+'?')) {
           this.tData.splice(index,1) ; 
           this.deleteAllData(id);

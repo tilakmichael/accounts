@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core' ; 
 import { Observable } from 'rxjs/Observable' ;
 import {DatePipe} from '@angular/common' ;  
@@ -17,7 +18,7 @@ export class AppCommonService {
    private glName:string ; 
    private slCode:string ;
 
-   constructor(private _date:DatePipe) {}
+   constructor(private _date:DatePipe , private _router:Router) {}
 
    range(start, count){
        return Array.apply(0, Array(count))
@@ -60,6 +61,10 @@ export class AppCommonService {
   }
   public setEndDt(date:Date){
       this.endDt=date ;
+  }
+
+  public goHome() {
+      this._router.navigateByUrl('') ;
   }
 
   public sqlDt2Jdt(date:Date) { 

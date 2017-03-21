@@ -23,6 +23,7 @@ var AppAccTypes = (function () {
         this.fData = [];
         this.sData = [];
         this.tData = [];
+        this.glData = [];
         this.error = [];
         this.fEditFlag = false;
         this.sEditFlag = false;
@@ -59,6 +60,10 @@ var AppAccTypes = (function () {
                 _this.fname = _this.fData[0].name;
                 _this.onclick(1, _this.fId, 0);
             }
+        }, function (error) { _this.error = error; });
+        this._data.getData('gl')
+            .subscribe(function (resp) {
+            _this.glData = resp.filter(function (_doc) { return _doc.orgid == _this.orgId; });
         }, function (error) { _this.error = error; });
     };
     AppAccTypes.prototype.onclick = function (level, id, index) {
@@ -133,6 +138,14 @@ var AppAccTypes = (function () {
         }
     };
     ;
+    AppAccTypes.prototype.checkGl = function (id) {
+        var retval = false;
+        var indx = this._common.findIndex(this.glData, 'gltypeid==' + id);
+        if (indx >= 0) {
+            retval = true;
+        }
+        return retval;
+    };
     AppAccTypes.prototype.deleteAllData = function (id) {
         var idex = this.allData.findIndex(function (data) { return data.id == id; });
         if (idex != -1) {
@@ -375,7 +388,11 @@ var AppAccTypes = (function () {
         var _this = this;
         this.onclick(1, id, index);
         if (this.sData.length > 0) {
-            alert('Child Level Existi for this record: ' + this.fData[index].name);
+            alert('Child Level Exist for this record: ' + this.fData[index].name);
+            return;
+        }
+        if (this.checkGl(id)) {
+            alert('Ledger Defined for this record: ' + this.fData[index].name);
             return;
         }
         if (confirm(' Do you want to delete ' + this.fData[index].name + '?')) {
@@ -394,6 +411,10 @@ var AppAccTypes = (function () {
             alert('Child Level Exists for this record: ' + this.sData[index].name);
             return;
         }
+        if (this.checkGl(id)) {
+            alert('Ledger Defined for this record: ' + this.sData[index].name);
+            return;
+        }
         if (confirm(' Do you want to delete ' + this.sData[index].name + '?')) {
             this.sData.splice(index, 1);
             this.deleteAllData(id);
@@ -405,6 +426,10 @@ var AppAccTypes = (function () {
     ;
     AppAccTypes.prototype.deleteTData = function (id, index) {
         var _this = this;
+        if (this.checkGl(id)) {
+            alert('Ledger Defined for this record: ' + this.tData[index].name);
+            return;
+        }
         if (confirm(' Do you want to delete ' + this.tData[index].name + '?')) {
             this.tData.splice(index, 1);
             this.deleteAllData(id);

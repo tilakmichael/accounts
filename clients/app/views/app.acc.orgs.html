@@ -1,6 +1,10 @@
 <div class="container">
-
+    <div> 
+        <p> organization {{error}} </p> 
+        <input type="button"  class="btn btn-primary" (click)='goHome()' [disabled]="!addDataFlag || editFlag" value="Done"/>
+      </div>
     <div class="table-responsive">
+
            <table class="table table-bordered table-hover"> 
                 <thead>
                     <tr> 
@@ -18,8 +22,8 @@
                         <td *ngIf='!editFlag || data.id !== editId'> {{data.phone}}</td>
                         <td *ngIf='!editFlag || data.id !== editId'> {{data.email}} </td>
                         <td *ngIf='!editFlag || data.id !== editId'> 
-                           <button class="btn btn-warning" (click)="editData(data.id, rowindex)"  [disabled]="editFlag"> Edit </button> 
-                           <button class="btn btn-danger" (click)="deleteData(data.id, rowindex)" [disabled]="editFlag"> Delete </button> 
+                           <button class="btn btn-warning" (click)="editData(data.id, rowindex)"  [disabled]="editFlag "> Edit </button> 
+                           <button class="btn btn-danger" (click)="deleteData(data.id, rowindex)" [disabled]="editFlag || checkChild(data.id)"> Delete </button> 
                         </td>
                         <!--  Editing    -->
                         <td *ngIf='editFlag && data.id == editId' colspan='4'>
@@ -64,22 +68,22 @@
                                <div class="form-group">
                                     <label  class='control-label col-sm-1'>Phone</label>
                                     <div class="col-sm-3">
-                                      <input type='text' class='form-control' #iphone name='phone' [(ngModel)]="phone" required>
+                                      <input type='text' class='form-control' #iphone name='phone' [(ngModel)]="phone" required placeholder="999-999-9999" pattern="\d{3}-?\d{3}-?\d{4}">
                                     </div>
                                     <label  class='control-label col-sm-1'>eMail</label>
                                     <div class="col-sm-3">
-                                      <input type='text' class='form-control' #iemail name='email' [(ngModel)]="email">
+                                      <input type='text' class='form-control' #iemail name='email' [(ngModel)]="email" placeholder="mail@mail.com" >
                                     </div>
                                     <label  class='control-label col-sm-1'>Web</label>
                                     <div class="col-sm-3">
-                                      <input type='text' class='form-control' #iweb name='web' [(ngModel)]="web">
+                                      <input type='text' class='form-control' #iweb name='web' [(ngModel)]="web" placeholder="myweb.com">
                                     </div>
                                </div>                            
                             
 
                              <div class="form-group" style='float: right'>
                                   
-                                  <button type="button" class='btn btn-success' [disabled]='!userform.valid || !userform.dirty ' (click)='saveData(data.id, rowindex)'>Save</button>
+                                  <button type="button" class='btn btn-success' [disabled]='!userform.valid || !userform.dirty   ' (click)='saveData(data.id, rowindex)'>Save</button>
                                   <button type="button" class='btn btn-warning' (click)='cancellData(data.id, rowindex)'>Cancell</button>
  
                              </div>

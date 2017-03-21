@@ -9,11 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var router_1 = require("@angular/router");
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var AppCommonService = (function () {
-    function AppCommonService(_date) {
+    function AppCommonService(_date, _router) {
         this._date = _date;
+        this._router = _router;
         //public url:string = "http://localhost:3000/api/acc/v1/";
         this.url = "/api/acc/v1/";
         this.periodiId = undefined;
@@ -56,6 +58,9 @@ var AppCommonService = (function () {
     };
     AppCommonService.prototype.setEndDt = function (date) {
         this.endDt = date;
+    };
+    AppCommonService.prototype.goHome = function () {
+        this._router.navigateByUrl('');
     };
     AppCommonService.prototype.sqlDt2Jdt = function (date) {
         if (date == null || date == undefined || !date) {
@@ -146,7 +151,7 @@ var AppCommonService = (function () {
 }());
 AppCommonService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [common_1.DatePipe])
+    __metadata("design:paramtypes", [common_1.DatePipe, router_1.Router])
 ], AppCommonService);
 exports.AppCommonService = AppCommonService;
 //# sourceMappingURL=app.common.service.js.map

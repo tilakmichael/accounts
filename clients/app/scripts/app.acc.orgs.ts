@@ -13,6 +13,7 @@ export class AppAccOrgs implements OnInit{
     public allData =[] ; 
     public error = [] ;
     public prdData=[] ;
+    public typData=[] ;
     public data:FormGroup ; 
     public addDataFlag:boolean = true ;
     public editFlag:boolean = false ; 
@@ -40,12 +41,17 @@ export class AppAccOrgs implements OnInit{
                 this._common.log(resp) ;   
               }, error => {this.error = error  }) ;
 
-         this._data.getData('period' )
+           this._data.getData('period' )
               .subscribe(resp => {
                 this.prdData = resp ;
               }, error => {this.error = error  }) ;
+         this._data.getData('types' )
+              .subscribe(resp => {
+                this.typData = resp ;
+              }, error => {this.error = error  }) ;
  
 
+ 
     }
 
     cancellData(id:number, index:number){
@@ -151,7 +157,7 @@ export class AppAccOrgs implements OnInit{
          this.setdata('Y' , this.allData[index]);    
     }
 
-    private checkChild(id:number) {
+    public checkChild(id:number) {
       this._common.log( 'check child ' + id ) ; 
       let retval:boolean = false ;
       let index = this._common.findIndex(this.prdData, 'orgid=='+id) ;
@@ -159,6 +165,11 @@ export class AppAccOrgs implements OnInit{
 
       if ( index  >= 0 ) {
          retval = true ; 
+      } else {
+         index =  this._common.findIndex(this.typData, 'orgid=='+id)  ;
+         if ( index  >= 0 ) {
+             retval = true ;
+         }      
       }
 
       return retval ; 
@@ -166,10 +177,10 @@ export class AppAccOrgs implements OnInit{
 
     deleteData(id:number, index:number) {
        if (this.checkChild(id) ) {
-          alert('Period Exist for this Organization. Deletion is not allowed')
+          alert('Period or Leger Type Exist for this Organization. Deletion is not allowed')
           return ;
        } 
-       
+      
        this._data.deleteData(this.table, id).subscribe(resp => {
             this._common.log( resp ) ;
             if (resp.affectedRows >= 1) { 
@@ -180,7 +191,9 @@ export class AppAccOrgs implements OnInit{
          
     }
  
-
+    goHome(){
+      this._common.goHome() ;
+    }
 
 
 }

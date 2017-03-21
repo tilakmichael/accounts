@@ -12,6 +12,7 @@ export class AppAccPeriod implements OnInit{
     public table:string =  'period' ;
     public allData =[] ; 
     public periodData = [] ;
+    public docData = [] ;
     public error = [] ;
     public data:FormGroup ; 
     public editFlag:boolean = false ; 
@@ -38,6 +39,13 @@ export class AppAccPeriod implements OnInit{
                  }
                 this._common.log(resp) ;   
           }, error => {this.error = error  }) ;
+
+          this._data.getData('doc' )
+              .subscribe(resp => {
+                this.docData = resp.filter(data => data.orgid == this.orgid)
+                this._common.log(resp) ;   
+          }, error => {this.error = error  }) ;
+
     }
 
      checkDups(id:number, startdt:Date, enddt:Date){
@@ -143,7 +151,20 @@ export class AppAccPeriod implements OnInit{
          console.log( this.enddt ) ; 
     }
 
+    private checkDoc(id:number):boolean{
+        let retval:boolean = false ; 
+        let idx = this._common.findIndex(this.docData, 'prdid=='+id) ; 
+        if (idx >= 0){
+           retval = true;
+        }
+        return retval ; 
+    }
+
     deleteData(id:number, index:number) {
+       if (this.checkDoc(id)){
+          alert( 'Document exists fpr this period') ;
+          return 
+       }
        if (confirm( "Delete this period? ")) {
           this._data.deleteData(this.table, id).subscribe(resp => {
                this._common.log( resp ) ;
