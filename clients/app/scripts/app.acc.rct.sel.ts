@@ -13,7 +13,7 @@ import {AppCommonService} from '../service/app.common.service';
            <div class="panel-body">
                  <form class="form-horizontal" #userform='ngForm'>
                     <div class="form-group">
-                         <label  class='control-label col-sm-2'>Sub Ledger Definition</label>
+                         <label  class='control-label col-sm-2'>Accounts Book</label>
                          <div class="col-sm-3">
                              <select [(ngModel)]="slcode" (ngModelChange)='onChange($event)' name='slcode' required>
                                 <option *ngFor="let _data of slBookData" [value]='_data.code'> {{_data.name}} </option>
