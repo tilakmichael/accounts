@@ -97,6 +97,7 @@ var AppAccOrgSelector = (function () {
             }
             //this._loc.back( ) ;
             //this._router.navigateByUrl('menu') ;
+            this._common.goHome();
         }
     };
     AppAccOrgSelector.prototype.onChange = function (id) {

@@ -26,7 +26,10 @@
    
                     <div class="form-group">
                          <div class="form-group" style='float: right'>
-                             <button class='btn btn-primary' (click)="orgSelect()" [disabled]='!orgId'> Done </button>
+                             <!--button class='btn btn-primary' (click)="orgSelect()"  src="../image/done.jpg" [disabled]='!orgId'> Done </button-->
+                             <input type="image" (click)="orgSelect()"  src="app/image/done.png"  height="42" width="42"   [disabled]='!orgId' /> &nbsp; &nbsp;
+                        
+                        
                          </div>
                     </div>
 

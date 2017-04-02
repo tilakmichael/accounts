@@ -22,6 +22,10 @@ thead {
 tr.seqnum:hover{
    color: blue ;
 }
+
+.verticalr {
+  border-right: thick solid white;
+}
 input.ng-invalid{border-left:2px solid red}
 input.ng-valid{border-left: (internal value)}
 
@@ -107,4 +111,122 @@ li.dropdown:hover > .dropdown-menu {
 	 color: gray ;
 }
 
+div.container > div > table > tbody 
+{
+font-size:10pt;
+font-family:times new roman;
+}
+
+.editbtn {
+  background: url('app/image/edit.png') left center no-repeat;
+}
+
+.deletebtn {
+  background: url('app/image/delete.png') center no-repeat;
+}
+
+.newbtn {
+  background: url('app/image/newb.png') center no-repeat;
+}
+
+.savebtn {
+  background: url('app/image/saveb.png') center no-repeat;
+}
+.cancelbtn {
+  background: url('app/image/cancelb.png') center no-repeat;
+}
+
+
+
+
+.footer-social-icons {
+    width: 350px;
+    display:block;
+    margin: 0 auto;
+}
+.social-icon {
+    color: #fff;
+}
+ul.social-icons {
+    margin-top: 10px;
+}
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+}
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+.fa-facebook {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+ }
+.fa-facebook:hover {
+    background-color: black;
+}
+.fa-twitter {
+    padding:10px 12px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+     transition: .5s;
+
+}
+.fa-twitter:hover {
+    background-color: black;
+}
+.fa-rss {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+
+}
+.fa-rss:hover {
+    background-color: black;
+}
+.fa-youtube {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+
+}
+.fa-youtube:hover {
+    background-color: black;
+}
+.fa-linkedin {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+}
+.fa-linkedin:hover {
+    background-color: black;
+}
+.fa-google-plus {
+    padding:10px 9px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+
+}
+.fa-google-plus:hover {
+    background-color: black;
+}
 

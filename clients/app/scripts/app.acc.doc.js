@@ -82,6 +82,9 @@ var AppAccDocs = (function () {
             console.log(' lgrname ' + this.lgrName);
         }
     };
+    AppAccDocs.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccDocs;
 }());
 AppAccDocs = __decorate([

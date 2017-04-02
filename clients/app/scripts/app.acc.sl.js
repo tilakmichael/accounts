@@ -167,6 +167,9 @@ var AppAccSl = (function () {
         this.pager = this._common.getPager(this.allSlData.length, page);
         this.slData = this.allSlData.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
+    AppAccSl.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccSl;
 }());
 AppAccSl = __decorate([

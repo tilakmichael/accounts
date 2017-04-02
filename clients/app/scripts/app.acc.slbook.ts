@@ -189,6 +189,9 @@ saveData(id, index){
 
 
 
+  goHome(){
+  this._common.goHome() ;
+  }
 
     
 }

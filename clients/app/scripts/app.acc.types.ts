@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -48,7 +49,7 @@ export class AppAccTypes{
     public level:string=undefined ;   
     public emptyData = {id:-1,name:'',seq:null, crdr:null,level:null, refid:null, orgid:this.orgId };
 
-    constructor( private _data:AppDataService , private _common:AppCommonService, /* private _dialog:DialogService */) { };
+    constructor( private _data:AppDataService , private _common:AppCommonService, private _loc:Location, private _router:Router /* private _dialog:DialogService */) { };
 
     ngOnInit() {
         this.orgId = this._common.getOrg() ;
@@ -485,6 +486,11 @@ private popChild(parentId,  level ){
        console.log(value) ;
        this.crdr = value ;
    } 
+
+   public goHome(){
+      this._common.goHome() ;
+    }
+
 
 
 }

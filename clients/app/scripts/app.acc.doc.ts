@@ -91,4 +91,9 @@ public onChange(event) {
          console.log(' lgrname ' + this.lgrName) ;
       }
   }
+
+  goHome(){
+  this._common.goHome() ;
+}
+
 }

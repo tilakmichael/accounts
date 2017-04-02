@@ -82,6 +82,9 @@ var AppAccRecDoc = (function () {
         this.pager = this._common.getPager(this.allData.length, page);
         this.bookData = this.allData.slice(this.pager.startIndex, this.pager.endIndex + 1);
     };
+    AppAccRecDoc.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccRecDoc;
 }());
 AppAccRecDoc = __decorate([

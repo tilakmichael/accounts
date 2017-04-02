@@ -15,7 +15,7 @@ var AppAccHome = (function () {
 AppAccHome = __decorate([
     core_1.Component({
         selector: 'APP-HOME',
-        template: " <div> </div> "
+        templateUrl: 'app/views/app.acc.home.html'
     })
 ], AppAccHome);
 exports.AppAccHome = AppAccHome;

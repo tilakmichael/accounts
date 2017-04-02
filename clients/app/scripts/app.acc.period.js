@@ -165,6 +165,9 @@ var AppAccPeriod = (function () {
             //alert(date) ; 
         }
     };
+    AppAccPeriod.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccPeriod;
 }());
 AppAccPeriod = __decorate([

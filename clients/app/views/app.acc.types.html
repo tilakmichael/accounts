@@ -1,5 +1,18 @@
 <div class='cotainer' > 
-    <div> <h4> Ledger Definition  {{error}} </h4> </div>
+       <div> 
+        <table width="100%" border="0">
+          <tr >
+            <td>
+               <h3> Balance Sheet {{error}} </h3>
+            </td>
+            <td align="right"> 
+               <input type="image"  (click)='goHome()' [disabled]="editFlag"  src="app/image/backhome.png"/>
+            </td>
+          </tr>
+        </table>
+         
+      </div>
+ 
 
    <div class="panel panel-default">
        <div class="panel-body">
@@ -14,7 +27,8 @@
                                 <th  style="width:30px;"> Seq. </th>
                                 <th> Dr/Cr </th>
                                 <th> 
-                                    <button type="button" class="btn btn-primary" (click)="addFdata()" [disabled]="editflag" > Add </button>
+                                    <input type="image" [disabled]="editFlag" (click)="addFdata()" src="app/image/newb.png">
+                                    <!--button type="button" class="btn btn-primary" (click)="addFdata()" [disabled]="editflag" > Add </button-->
                                 </th>
                             </thead>
                             
@@ -29,8 +43,11 @@
                                         </select>
                                     </td>
                                     <td *ngIf="(!fEditFlag) || fId !=data1.id"> 
-                                    <button type="button" class="btn btn-warning" [disabled]='editflag' (click)=' editFData(data1.id, rowIndex)'> Edit </button> 
-                                    <button type="button" class="btn btn-danger"  [disabled]='editflag' (click)='deleteFData(data1.id, rowIndex)' > Delete </button>
+                                    <input type="image" (click)="editFData(data1.id, rowIndex)"  [disabled]="editFlag"  src="app/image/edit.png"/>  &nbsp; 
+                                    <input type="image" (click)="deleteFData(data1.id, rowIndex)" [disabled]="editFlag" src="app/image/delete.png" />                        
+                                        
+                                    <!--button type="button" class="btn btn-warning" [disabled]='editflag' (click)=' editFData(data1.id, rowIndex)'> Edit </button> 
+                                    <button type="button" class="btn btn-danger"  [disabled]='editflag' (click)='deleteFData(data1.id, rowIndex)' > Delete </button-->
                                     </td>
 
                                     <td *ngIf="(fEditFlag) && fId == data1.id"> <input type="text" name='name'  [(ngModel)]='name' required > </td>
@@ -41,9 +58,12 @@
                                              <option value='C'>Credit</option>
                                         </select>
                                      </td>   
-                                    <td *ngIf="(fEditFlag) && fId == data1.id"> 
-                                       <button type="button" class="btn btn-warning" (click)='saveFdata(data1.id, rowIndex)'> Save </button> 
-                                       <button type="button" class="btn btn-danger" (click)='cancelFdata(data1.id, rowIndex)'> Cancell </button>
+                                    <td *ngIf="(fEditFlag) && fId == data1.id">
+                                      <input type="image" (click)="saveFdata(data1.id, rowIndex)"   src="app/image/saveb.png"/> &nbsp; &nbsp;
+                                      <input type="image" (click)="cancelFdata(data1.id, rowIndex)"   src="app/image/cancelb.png"/> 
+                                         
+                                       <!--button type="button" class="btn btn-warning" (click)='saveFdata(data1.id, rowIndex)'> Save </button> 
+                                       <button type="button" class="btn btn-danger" (click)='cancelFdata(data1.id, rowIndex)'> Cancell </button-->
                                     </td>
                                 </tr>    
                             </tbody>        
@@ -60,8 +80,10 @@
                                 <th> Name </th>
                                 <th  style="width:30px;"> Seq. </th>
                                 <th> Dr/Cr </th>
-                                <th> 
-                                    <button type="button" class="btn btn-primary" (click)="addSdata()" [disabled]="editflag"  > Add </button>
+                                <th>
+                                    <input type="image" [disabled]="editFlag" (click)="addSdata()" src="app/image/newb.png">
+                                     
+                                    <!--button type="button" class="btn btn-primary" (click)="addSdata()" [disabled]="editflag"  > Add </button-->
                                 </th>
                             </thead>
                             
@@ -76,8 +98,10 @@
                                         </select>
                                     </td>
                                     <td *ngIf="(!sEditFlag) || sId !=data2.id"> 
-                                    <button type="button" class="btn btn-warning" [disabled]='editflag' (click)='editSData(data2.id, rowIndex)'> Edit </button> 
-                                    <button type="button" class="btn btn-danger"  [disabled]='editflag' (click)='deleteSData(data2.id, rowIndex)' > Delete </button>
+                                    <input type="image" (click)="editSData(data2.id, rowIndex)"  [disabled]="editFlag "  src="app/image/edit.png"/>  &nbsp; 
+                                    <input type="image" (click)="deleteSData(data2.id, rowIndex)" [disabled]="editFlag " src="app/image/delete.png" />             
+                                    <!--button type="button" class="btn btn-warning" [disabled]='editflag' (click)='editSData(data2.id, rowIndex)'> Edit </button> 
+                                    <button type="button" class="btn btn-danger"  [disabled]='editflag' (click)='deleteSData(data2.id, rowIndex)' > Delete </button-->
                                     </td>
 
                                     <td *ngIf="(sEditFlag) && sId == data2.id"> <input type="text" name='name'  [(ngModel)]='name' required > </td>
@@ -90,8 +114,11 @@
                                    
                                     </td>
                                     <td *ngIf="(sEditFlag) && sId == data2.id"> 
-                                    <button type="button" class="btn btn-warning" (click)='saveSdata(data2.id, rowIndex)'> Save </button> 
-                                    <button type="button" class="btn btn-danger" (click)='cancelSdata(data2.id, rowIndex)'> Cancell </button>
+                                      <input type="image" (click)="saveSdata(data2.id, rowIndex)"   src="app/image/saveb.png"/> &nbsp; &nbsp;
+                                      <input type="image" (click)="cancelSdata(data2.id, rowIndex)"   src="app/image/cancelb.png"/> 
+                                        
+                                      <!--button type="button" class="btn btn-warning" (click)='saveSdata(data2.id, rowIndex)'> Save </button> 
+                                      <button type="button" class="btn btn-danger" (click)='cancelSdata(data2.id, rowIndex)'> Cancell </button-->
                                     </td>
                                 </tr>    
                              </tbody>        
@@ -111,7 +138,9 @@
                          <th  style="width:30px;"> Seq. </th>
                          <th> Dr/Cr </th>
                          <th> 
-                             <button type="button" class="btn btn-primary" (click)="addTdata()" [disabled]="editflag || !sPid" > Add </button>
+                             <input type="image" [disabled]="editFlag || !sPid" (click)="addTdata()" src="app/image/newb.png">
+
+                             <!--button type="button" class="btn btn-primary" (click)="addTdata()" [disabled]="editflag || !sPid" > Add </button-->
                          </th>
                      </thead>
                      
@@ -126,8 +155,11 @@
                                   </select>
                              </td>
                             <td *ngIf="(!tEditFlag) || tId !=data3.id"> 
-                               <button type="button" class="btn btn-warning" [disabled]='editflag' (click)='editTData(data3.id, rowIndex)'> Edit </button> 
-                               <button type="button" class="btn btn-danger"  [disabled]='editflag' (click)='deleteTData(data3.id, rowIndex)' > Delete </button>
+                                   <input type="image" (click)="editTData(data3.id, rowIndex)"  [disabled]="editFlag "  src="app/image/edit.png"/>  &nbsp; &nbsp;
+                                   <input type="image" (click)="deleteTData(data3.id, rowIndex)" [disabled]="editFlag " src="app/image/delete.png" />         
+                                 
+                               <!--button type="button" class="btn btn-warning" [disabled]='editflag' (click)='editTData(data3.id, rowIndex)'> Edit </button> 
+                               <button type="button" class="btn btn-danger"  [disabled]='editflag' (click)='deleteTData(data3.id, rowIndex)' > Delete </button-->
                             </td>
 
                             <td *ngIf="(tEditFlag) && tId == data3.id"> <input type="text" name='name'  [(ngModel)]='name' required > </td>
@@ -140,8 +172,11 @@
                                    
                            </td>
                             <td *ngIf="(tEditFlag) && tId == data3.id"> 
-                               <button type="button" class="btn btn-warning" (click)='saveTdata(data3.id, rowIndex)'> Save </button> 
-                               <button type="button" class="btn btn-danger" (click)='cancelTdata(data3.id, rowIndex)'> Cancell </button>
+                                      <input type="image" (click)="saveTdata(data3.id, rowIndex)"   src="app/image/saveb.png"/> &nbsp; &nbsp;
+                                      <input type="image" (click)="cancelTdata(data3.id, rowIndex)"   src="app/image/cancelb.png"/> 
+
+                               <!--button type="button" class="btn btn-warning" (click)='saveTdata(data3.id, rowIndex)'> Save </button> 
+                               <button type="button" class="btn btn-danger" (click)='cancelTdata(data3.id, rowIndex)'> Cancell </button-->
                             </td>
                         </tr>    
                      </tbody>        

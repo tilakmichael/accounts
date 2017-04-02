@@ -1,4 +1,18 @@
 <div class="container">
+    <div> 
+        <table width="100%" border="0">
+          <tr >
+            <td>
+               <h3> organization {{error}} </h3>
+            </td>
+            <td align="right"> 
+              <input type="image"  (click)='goHome()' [disabled]="editFlag"  src="app/image/backhome.png"/>
+            </td>
+          </tr>
+        </table>
+         
+      </div>
+
 
     <div class="table-responsive" *ngIf='!slcode'>
        <div class="panel panel-default">

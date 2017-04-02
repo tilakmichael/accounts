@@ -195,6 +195,9 @@ saveData(id, index){
     this.slData= this.allSlData.slice(this.pager.startIndex, this.pager.endIndex+1)
   }
 
+  goHome(){
+      this._common.goHome() ;
+  }
 
 
     

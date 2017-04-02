@@ -165,6 +165,9 @@ var AppAccBook = (function () {
         this.onCancel(-2, -2);
     };
     ;
+    AppAccBook.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccBook;
 }());
 AppAccBook = __decorate([

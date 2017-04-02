@@ -182,5 +182,10 @@ export class AppAccPeriod implements OnInit{
        }
    }
 
+   goHome(){
+      this._common.goHome() ;
+    }
+
+
 }
 

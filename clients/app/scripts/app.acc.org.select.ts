@@ -101,10 +101,13 @@ export class AppAccOrgSelector implements OnInit {
                this.endEdt.emit(this.periodData[index].enddt ) ;   
            }
            this.periodEId.emit(this.periodId);
+
+           
         }
 
         //this._loc.back( ) ;
         //this._router.navigateByUrl('menu') ;
+       this._common.goHome(); 
       }
   }
 

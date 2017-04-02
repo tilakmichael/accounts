@@ -170,6 +170,9 @@ var AppAccGl = (function () {
         }
     };
     ;
+    AppAccGl.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccGl;
 }());
 AppAccGl = __decorate([

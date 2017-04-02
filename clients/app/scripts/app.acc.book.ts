@@ -186,5 +186,11 @@ saveData(id, index){
         this.onCancel(-2,-2) ;
    
    };
+
+   goHome(){
+     this._common.goHome() ;
+   }  
+}
+
     
 }

@@ -1,9 +1,10 @@
 <div class='container'>
     <div *ngIf='orgId'>
       <nav class="navbar  navbar-inverse navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header" >
-               <a class="navbar-brand"  >{{orgName}} {{startDt|date:'shortDate'}} {{endDt|date:'shortDate'}}:</a>
+        <div>  
+        <div class="container-fluid" width="90%">
+            <div class="navbar-header verticalr" >
+               <a class="navbar-brand"  >{{orgName}} {{startDt|date:'shortDate'}} {{endDt|date:'shortDate'}}</a>
             </div>
             
             <ul class="nav navbar-nav">
@@ -45,10 +46,18 @@
                </ul>
             </li>
 
+        
             <li><a [routerLink]="['orgs']">Reports</a></li>
             </ul>
-        </div>
+            
+      
 
+        </div>
+        <!--div allign="right" width="20%">
+             <input type="image" src="app/image/user.png" > 
+       </div-->
+       </div>
+ 
       </nav>
     </div>
     <div *ngIf='!orgId'> 

@@ -1,7 +1,19 @@
 <div class="container">
+    <div> 
+        <table width="100%" border="0">
+          <tr >
+            <td>
+               <h3> {{typeName}}: {{lgrName}} {{error}} </h3>
+            </td>
+            <td align="right"> 
+              <input type="image"  (click)='goHome()' [disabled]="editFlag"  src="app/image/backhome.png"/>
+            </td>
+          </tr>
+        </table>
+         
+      </div>
 
     <div class="table-responsive">
-           <div>  <h4> {{typeName}}: {{lgrName}} {{error}}</h4> </div>
            <table class="table table-bordered table-hover"> 
                 <thead>
                         <th> # </th> 

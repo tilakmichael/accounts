@@ -9,15 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var common_1 = require("@angular/common");
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 //import { DialogService } from "ng2-bootstrap-modal";
 var app_data_services_1 = require("../service/app.data.services");
 var app_common_service_1 = require("../service/app.common.service");
 //import {AppAccTypeCrud} from '../scripts/app.acc.type.crud' ; 
 var AppAccTypes = (function () {
-    function AppAccTypes(_data, _common) {
+    function AppAccTypes(_data, _common, _loc, _router /* private _dialog:DialogService */) {
         this._data = _data;
         this._common = _common;
+        this._loc = _loc;
+        this._router = _router; /* private _dialog:DialogService */
         this.table = 'types';
         this.allData = [];
         this.fData = [];
@@ -443,6 +447,9 @@ var AppAccTypes = (function () {
         console.log(value);
         this.crdr = value;
     };
+    AppAccTypes.prototype.goHome = function () {
+        this._common.goHome();
+    };
     return AppAccTypes;
 }());
 AppAccTypes = __decorate([
@@ -450,7 +457,7 @@ AppAccTypes = __decorate([
         selector: "APP-TYPES",
         templateUrl: 'app/views/app.acc.types.html'
     }),
-    __metadata("design:paramtypes", [app_data_services_1.AppDataService, app_common_service_1.AppCommonService])
+    __metadata("design:paramtypes", [app_data_services_1.AppDataService, app_common_service_1.AppCommonService, common_1.Location, router_1.Router /* private _dialog:DialogService */])
 ], AppAccTypes);
 exports.AppAccTypes = AppAccTypes;
 //# sourceMappingURL=app.acc.types.js.map

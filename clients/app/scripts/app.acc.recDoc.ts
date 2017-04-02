@@ -91,5 +91,11 @@ setPage(page:number){
     this.bookData= this.allData.slice(this.pager.startIndex, this.pager.endIndex+1)
 }
 
+goHome(){
+  this._common.goHome() ;
+}
+  
+}
+
 
 }
